@@ -20,7 +20,6 @@ export interface MovieDetail {
   imports: [CommonModule, MovieCardComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [MovieService]
 })
 export class HomeComponent implements OnInit {
   moviesData: MovieDetail[] = [];
@@ -47,30 +46,12 @@ export class HomeComponent implements OnInit {
   }
 
 
-  // filterMovies(): void {
-  //   if (this.searchQuery) {
-  //     this.filteredMovies = this.moviesData.filter(movie => movie.movie.toLowerCase().includes(this.searchQuery.toLowerCase()));
-  //   } else {
-  //     this.filteredMovies = [...this.moviesData];
-  //   }
-  // }
   filterMovies(): void {
     if (this.searchQuery) {
-      const matchingMovies = this.moviesData.filter(movie =>
-        movie.movie.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-
-      if (matchingMovies.length === 1) {
-        // If exactly one movie matches the search query, navigate to the movie page
-        const movieId = matchingMovies[0].id;
-        this.router.navigate(['/movie-page', movieId]);
-      } else {
-        this.filteredMovies = matchingMovies;
-      }
+      this.filteredMovies = this.moviesData.filter(movie => movie.movie.toLowerCase().includes(this.searchQuery.toLowerCase()));
     } else {
       this.filteredMovies = [...this.moviesData];
     }
   }
-
 }
 
