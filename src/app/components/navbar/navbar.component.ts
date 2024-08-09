@@ -18,18 +18,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, private movieService: MovieService) { }
 
-  // ngOnInit(): void {
-  //   this.movieService.movieNames$.subscribe(names => {
-  //     this.movieNames = names;
-  //     console.log('Movie names in NavbarComponent:dd', this.movieNames);
-  //     // if (names.length > 0) {
-  //     //   this.movieNames = names;
-  //     //   console.log(this.movieNames, 'dd');
-  //     // } else {
-  //     //   this.movieService.fetchMovies().subscribe();
-  //     // }
-  //   });
-  // }
+
   ngOnInit(): void {
     //here use comineLatest to ensure that subscribtion only occour after data fetching
     combineLatest([
