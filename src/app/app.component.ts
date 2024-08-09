@@ -6,12 +6,12 @@ import { MovieService } from './services/movie.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers:[MovieService]
+  providers: [MovieService]
 })
 export class AppComponent {
   title = 'movie-review-app';
-  
+
 }

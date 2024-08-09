@@ -11,10 +11,6 @@
 npm-debug.log
 yarn-error.log
 
-# Environment files
-src/app/components
-src/app/services
-
 
 # IDEs and editors
 .idea/
