@@ -19,7 +19,7 @@ export class MovieService {
   constructor(private http: HttpClient) { }
 
 
-  // Fetch all movies and update the centralized store
+  // Fetch all movies data and update the centralized store
   fetchMovies(): Observable<MovieDetail[]> {
     return this.http.get<MovieDetail[]>(this.movieApiUrl).pipe(
       tap(movies => {
@@ -40,6 +40,7 @@ export class MovieService {
   }
 
 
+
   // Update movie rating and reflect it in the centralized store
   updateMovieRating(id: number, newRating: number): void {
     const currentMovies = this.moviesSubject.getValue();
@@ -53,7 +54,7 @@ export class MovieService {
   // Get a movie ID by its name
   getMovieIdByName(movieName: string): number | undefined {
     const currentMovies = this.moviesSubject.getValue();
-    const movie = currentMovies.find(m => m.movie === movieName);
+    const movie = currentMovies.find(m => m.movie.toLowerCase() === movieName.toLowerCase());
     return movie?.id;
   }
 

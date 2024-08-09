@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { MovieService } from '../../services/movie.service';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-// import { MovieNameComponent } from '../movie-name/movie-name.component';
 import { combineLatest } from 'rxjs';
 
 @Component({
@@ -20,7 +19,7 @@ export class NavbarComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //here use comineLatest to ensure that subscribtion only occour after data fetching
+    // here use comineLatest to ensure that subscription only occour after data fetching
     combineLatest([
       this.movieService.movies$,
       this.movieService.movieNames$,
@@ -34,9 +33,16 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  onSubmit(searchValue: string): void {
+  onSearchSubmit(searchValue: string): void {
     if (searchValue) {
-      this.router.navigate(['/'], { queryParams: { search: searchValue } });
+      const movieId = this.movieService.getMovieIdByName(searchValue);
+
+      if (movieId !== undefined) {
+        this.router.navigate(['/movie-page', movieId]);
+      } else {
+        this.router.navigate(['/'], { queryParams: { search: searchValue } });
+      }
+
     }
   }
 

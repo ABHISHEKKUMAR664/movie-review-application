@@ -40,7 +40,7 @@
       </li>
     </ul>
 
-    <form class="d-flex ms-auto" (ngSubmit)="onSubmit(searchInput.value)">
+    <form class="d-flex ms-auto" (submit)="onSearchSubmit(searchInput.value)">
       <input
         #searchInput
         class="form-control me-2"

@@ -2,13 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MovieDetail } from '../home/home.component';
-// interface MovieDetail {
-//   id: number;
-//   movie: string;
-//   rating: number;
-//   image: string;
-//   imdb_url: string;
-// }
+
 
 @Component({
   selector: 'app-movie-card',

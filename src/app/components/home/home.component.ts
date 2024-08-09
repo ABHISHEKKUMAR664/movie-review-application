@@ -33,26 +33,44 @@ export class HomeComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.searchQuery = params['search'] || '';
-      // this.fetchMovies();
+      this.filterMovies();
     });
 
-    this.fetchMovies()
+    this.fetchMovies();
   }
 
   fetchMovies(): void {
-    this.movieService.fetchMovies().subscribe(movies => {  // Subscribe to the observable returned by fetchMovies
+    this.movieService.fetchMovies().subscribe(movies => {
       this.moviesData = movies;
       this.filterMovies();
     });
   }
 
 
+  // filterMovies(): void {
+  //   if (this.searchQuery) {
+  //     this.filteredMovies = this.moviesData.filter(movie => movie.movie.toLowerCase().includes(this.searchQuery.toLowerCase()));
+  //   } else {
+  //     this.filteredMovies = [...this.moviesData];
+  //   }
+  // }
   filterMovies(): void {
     if (this.searchQuery) {
-      this.filteredMovies = this.moviesData.filter(movie => movie.movie.toLowerCase().includes(this.searchQuery.toLowerCase()));
+      const matchingMovies = this.moviesData.filter(movie =>
+        movie.movie.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+
+      if (matchingMovies.length === 1) {
+        // If exactly one movie matches the search query, navigate to the movie page
+        const movieId = matchingMovies[0].id;
+        this.router.navigate(['/movie-page', movieId]);
+      } else {
+        this.filteredMovies = matchingMovies;
+      }
     } else {
       this.filteredMovies = [...this.moviesData];
     }
   }
+
 }
 
